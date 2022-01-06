@@ -56,8 +56,10 @@ class SlackNotificationService implements NotificationService {
       def response
       String address = it
       if (slack.config.sendCompactMessages) {
+        log.info("sending compact message to slack")
         response = slack.sendCompactMessage(new CompactSlackMessage(text), address, true)
       } else {
+        log.info("sending interactive message to slack ")
         response = slack.sendMessage(
           new SlackAttachment(subject, text, (InteractiveActions)notification.interactiveActions),
           address, true)
