@@ -49,6 +49,7 @@ class SlackNotificationService implements NotificationService {
 
   @Override
   EchoResponse.Void handle(Notification notification) {
+    log.info("handling slack notification to ${notification.to}")
     log.debug("Handling Slack notification to ${notification.to}")
     def subject = notificationTemplateEngine.build(notification, NotificationTemplateEngine.Type.SUBJECT)
     def text = notificationTemplateEngine.build(notification, NotificationTemplateEngine.Type.BODY)
