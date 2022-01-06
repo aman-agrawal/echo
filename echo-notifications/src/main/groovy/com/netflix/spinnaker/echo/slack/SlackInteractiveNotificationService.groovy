@@ -76,6 +76,7 @@ class SlackInteractiveNotificationService extends SlackNotificationService imple
   }
 
   private Map parseSlackPayload(String body) {
+    log.info("parseSlackPayload method called ${body}")
     if (!body.startsWith("payload=")) {
       throw new InvalidRequestException("Missing payload field in Slack callback request.")
     }
@@ -103,7 +104,7 @@ class SlackInteractiveNotificationService extends SlackNotificationService imple
     slackAppService.verifySignature(request)
 
     Map payload = parseSlackPayload(request.getBody())
-    log.debug("Received callback event from Slack of type ${payload.type}")
+    log.info("Received callback event from Slack of type ${payload.type}")
 
     if (payload.actions.size > 1) {
       log.warn("Expected a single selected action from Slack, but received ${payload.actions.size}")
@@ -117,7 +118,8 @@ class SlackInteractiveNotificationService extends SlackNotificationService imple
 
     String user = payload.user.name
     try {
-      SlackService.SlackUserInfo userInfo = slackAppService.getUserInfo(payload.user.id, false)
+      SlackService.SlackUserInfo userInfo = slackAppService.getUserInfo(payload.user.id)
+      log.info("user info :${userInfo.getEmail()}")
       user = userInfo.email
     } catch (Exception e) {
       log.error("Error retrieving info for Slack user ${payload.user.name} (${payload.user.id}). Falling back to username.")

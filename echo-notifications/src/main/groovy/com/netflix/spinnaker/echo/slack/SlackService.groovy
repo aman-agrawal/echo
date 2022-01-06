@@ -36,6 +36,8 @@ class SlackService {
   }
 
   Response sendMessage(SlackAttachment message, String channel, boolean asUser) {
+    log.info("slack send message :message ${message} channel ${channel} asUser ${asUser}")
+    log.info("is incoming webhook : ${config.useIncomingWebhook} config token ${config.token}")
     config.useIncomingWebhook ?
       slackClient.sendUsingIncomingWebHook(config.token, new SlackRequest([message], channel)) :
       slackClient.sendMessage(config.token, toJson(message), channel, asUser, config.expandUserNames ? 1 : 0)
