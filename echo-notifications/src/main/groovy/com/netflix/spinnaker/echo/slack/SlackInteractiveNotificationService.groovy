@@ -117,7 +117,7 @@ class SlackInteractiveNotificationService extends SlackNotificationService imple
 
     String user = payload.user.name
     try {
-      SlackService.SlackUserInfo userInfo = slackAppService.getUserInfo(payload.user.id)
+      SlackService.SlackUserInfo userInfo = slackAppService.getUserInfo(payload.user.id, false)
       user = userInfo.email
     } catch (Exception e) {
       log.error("Error retrieving info for Slack user ${payload.user.name} (${payload.user.id}). Falling back to username.")

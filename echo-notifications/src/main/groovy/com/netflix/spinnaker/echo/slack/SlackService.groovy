@@ -46,6 +46,11 @@ class SlackService {
     slackClient.getUserInfo(config.token, userId)
   }
 
+  SlackUserInfo getUserInfo(String userId, boolean includeLocale){
+    String bearerToken = "Bearer ${config.token}"
+    slackClient.getUserInfo(bearerToken, userId, includeLocale)
+  }
+
 
   def static toJson(message) {
     "[" + new JsonBuilder(message).toPrettyString() + "]"

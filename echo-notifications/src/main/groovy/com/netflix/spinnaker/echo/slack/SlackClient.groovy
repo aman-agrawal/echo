@@ -54,4 +54,11 @@ interface SlackClient {
     @Query('token') String token,
     @Query('user') String userId
   )
+
+  @GET('/api/users.info')
+  SlackService.SlackUserInfo getUserInfo(
+    @Header('Authorization') String authToken,
+    @Query('user') String userId,
+    @Query('include_locale') boolean includeLocale
+  )
 }
