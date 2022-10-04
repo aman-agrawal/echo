@@ -61,6 +61,15 @@ public class NotificationController {
    */
   @RequestMapping(method = RequestMethod.POST)
   public EchoResponse create(@RequestBody Notification notification) {
+
+    notificationServices.stream()
+        .forEach(
+            it -> {
+              if (!("SLACK".equals(notification.getNotificationType()))) {
+                notification.setUseInteractiveBot(false);
+                notification.setInteractiveActions(null);
+              }
+            });
     val notificationService =
         notificationServices.stream()
             .filter(
