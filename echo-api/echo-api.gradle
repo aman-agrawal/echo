@@ -21,5 +21,4 @@ dependencies {
   testImplementation("io.mockk:mockk:1.10.5")
   testImplementation("org.springframework.boot:spring-boot-starter-test")
   testImplementation "cglib:cglib-nodep:3.3.0"
-
 }
