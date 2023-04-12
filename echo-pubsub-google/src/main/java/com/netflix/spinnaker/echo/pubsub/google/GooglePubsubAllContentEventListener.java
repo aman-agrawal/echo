@@ -19,7 +19,7 @@ package com.netflix.spinnaker.echo.pubsub.google;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.netflix.spinnaker.echo.api.events.Event;
 import com.netflix.spinnaker.echo.api.events.EventListener;
-import com.netflix.spinnaker.echo.config.GooglePubsubProperties.Content;
+import com.netflix.spinnaker.echo.config.GooglePubsubProperties;
 import com.netflix.spinnaker.echo.model.pubsub.PubsubSystem;
 import com.netflix.spinnaker.echo.pubsub.PubsubPublishers;
 import lombok.extern.slf4j.Slf4j;
@@ -40,7 +40,7 @@ public class GooglePubsubAllContentEventListener implements EventListener {
   public void processEvent(Event event) {
     publishers.publishersMatchingType(PubsubSystem.GOOGLE).stream()
         .map(p -> (GooglePubsubPublisher) p)
-        .filter(p -> p.getContent() == Content.ALL)
+        .filter(p -> p.getContent() == GooglePubsubProperties.Content.ALL)
         .forEach(p -> p.publishEvent(event));
   }
 }

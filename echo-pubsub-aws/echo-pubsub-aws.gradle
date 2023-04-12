@@ -15,6 +15,7 @@
  */
 
 dependencies {
+  api("org.springframework.boot:spring-boot-starter-validation")
   implementation project(':echo-artifacts')
   implementation project(':echo-core')
   implementation project(':echo-model')
@@ -23,6 +24,9 @@ dependencies {
   implementation "io.spinnaker.kork:kork-core"
   implementation "io.spinnaker.kork:kork-aws"
   implementation "io.spinnaker.kork:kork-pubsub-aws"
-  implementation "com.netflix.spectator:spectator-api"
-  implementation "javax.validation:validation-api"
+  implementation "com.netflix.spectator:spectator-api:1.5.3"
+  implementation "jakarta.validation:jakarta.validation-api:3.0.2"
+  implementation "net.logstash.logback:logstash-logback-encoder:4.11"
+  implementation "org.springframework.boot:spring-boot-starter-validation"
+  api("com.jcraft:jsch.agentproxy.connector-factory:0.0.9")
 }

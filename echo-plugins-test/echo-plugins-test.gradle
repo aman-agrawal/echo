@@ -3,7 +3,9 @@ apply from: "${project.rootDir}/gradle/kotlin.gradle"
 dependencies {
   implementation(project(":echo-api"))
   implementation("io.spinnaker.kork:kork-exceptions")
-
+  implementation("net.logstash.logback:logstash-logback-encoder:7.3")
+  implementation("com.netflix.spectator:spectator-api:1.5.4")
+  implementation "org.apache.groovy:groovy:4.0.9"
   testImplementation(project(":echo-web"))
   testImplementation(project(":echo-core"))
 

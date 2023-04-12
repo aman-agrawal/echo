@@ -27,7 +27,6 @@ import com.netflix.spinnaker.echo.test.RetrofitStubs
 import com.netflix.spinnaker.fiat.shared.FiatPermissionEvaluator
 import com.netflix.spinnaker.kork.artifacts.model.Artifact
 import com.netflix.spinnaker.kork.artifacts.model.ExpectedArtifact
-import groovy.json.JsonOutput
 import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Subject

@@ -29,7 +29,12 @@ dependencies {
   implementation 'com.squareup.retrofit:converter-jackson'
   implementation 'de.huxhorn.sulky:de.huxhorn.sulky.ulid'
   implementation "org.apache.commons:commons-lang3"
-  testImplementation 'io.mockk:mockk'
+  implementation "net.logstash.logback:logstash-logback-encoder:4.11"
+  implementation "com.squareup.retrofit:converter-jackson:1.9.0"
+  implementation "de.huxhorn.sulky:de.huxhorn.sulky.ulid:8.3.0"
+  testImplementation "io.mockk:mockk:1.10.5"
   testImplementation 'io.strikt:strikt-core'
   testImplementation "io.spinnaker.kork:kork-jedis-test"
+  testImplementation "org.junit.jupiter:junit-jupiter-api"
+  testImplementation "org.junit.jupiter:junit-jupiter-params"
 }

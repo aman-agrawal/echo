@@ -20,13 +20,14 @@ dependencies {
   implementation "io.spinnaker.fiat:fiat-api:$fiatVersion"
   implementation "io.spinnaker.fiat:fiat-core:$fiatVersion"
   implementation "com.squareup.retrofit:retrofit"
-  implementation "com.squareup.retrofit:converter-jackson"
+  implementation "com.squareup.retrofit:converter-jackson:1.9.0"
   implementation "com.jakewharton.retrofit:retrofit1-okhttp3-client:1.1.0"
   implementation "io.spinnaker.kork:kork-web"
   implementation "com.squareup.okhttp:okhttp"
-  implementation "com.squareup.okhttp:okhttp-urlconnection"
-  implementation "com.squareup.okhttp:okhttp-apache"
-
+  implementation "com.squareup.okhttp:okhttp-urlconnection:2.7.5"
+  implementation "com.squareup.okhttp:okhttp-apache:2.7.5"
+  implementation "net.logstash.logback:logstash-logback-encoder:7.3"
+  implementation "com.vdurmont:semver4j:3.1.0"
   implementation project(':echo-core')
   implementation "io.spinnaker.kork:kork-core"
   implementation "io.spinnaker.kork:kork-security"

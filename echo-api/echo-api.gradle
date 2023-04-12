@@ -11,13 +11,15 @@ dependencies {
   implementation platform("io.spinnaker.kork:kork-bom:$korkVersion")
   annotationProcessor platform("io.spinnaker.kork:kork-bom:$korkVersion")
 
-  api "io.spinnaker.kork:kork-plugins-api"
+  api "io.spinnaker.kork:kork-plugins-api:$korkVersion"
 
-  compileOnly("org.projectlombok:lombok")
-  annotationProcessor("org.projectlombok:lombok")
-
+  compileOnly("org.projectlombok:lombok:1.18.22")
+  annotationProcessor("org.projectlombok:lombok:1.18.22")
+  api("cglib:cglib-nodep:3.3.0")
   testImplementation("io.strikt:strikt-core")
-  testImplementation("dev.minutest:minutest")
-  testImplementation("io.mockk:mockk")
+  testImplementation("dev.minutest:minutest:1.13.0")
+  testImplementation("io.mockk:mockk:1.10.5")
   testImplementation("org.springframework.boot:spring-boot-starter-test")
+  testImplementation "cglib:cglib-nodep:3.3.0"
+
 }
