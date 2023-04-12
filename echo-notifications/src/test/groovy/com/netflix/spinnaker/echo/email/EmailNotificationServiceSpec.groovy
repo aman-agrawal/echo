@@ -22,14 +22,14 @@ import com.icegreen.greenmail.util.GreenMailUtil
 import com.icegreen.greenmail.util.ServerSetupTest
 import com.netflix.spinnaker.echo.api.Notification
 import com.netflix.spinnaker.echo.notification.NotificationTemplateEngine
+import jakarta.mail.internet.MimeMessage
 import org.springframework.mail.javamail.JavaMailSenderImpl
 import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Subject
 import spock.lang.Unroll
 
-import javax.mail.Message
-import javax.mail.internet.MimeMessage
+
 
 class EmailNotificationServiceSpec extends Specification {
   def notificationTemplateEngine = Mock(NotificationTemplateEngine)

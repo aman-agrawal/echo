@@ -16,7 +16,7 @@
 
 package com.netflix.spinnaker.echo.notification;
 
-import org.jsoup.helper.StringUtil;
+import org.jsoup.internal.StringUtil;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.nodes.TextNode;
@@ -28,8 +28,8 @@ import org.jsoup.select.NodeVisitor;
 public class HtmlToPlainText {
   public String getPlainText(Element element) {
     FormattingVisitor formatter = new FormattingVisitor();
-    NodeTraversor traversor = new NodeTraversor(formatter);
-    traversor.traverse(element);
+    NodeTraversor traversor = new NodeTraversor();
+    traversor.traverse(formatter, element);
     return formatter.toString();
   }
 
