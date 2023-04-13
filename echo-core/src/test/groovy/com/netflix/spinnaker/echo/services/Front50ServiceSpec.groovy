@@ -1,6 +1,5 @@
 package com.netflix.spinnaker.echo.services
 
-import groovy.json.JsonOutput
 import com.netflix.spinnaker.echo.model.Trigger
 import retrofit.Endpoints
 import retrofit.RestAdapter

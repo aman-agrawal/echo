@@ -21,6 +21,7 @@ import com.netflix.spectator.api.DefaultRegistry;
 import com.netflix.spectator.api.Registry;
 import com.netflix.spinnaker.fiat.shared.EnableFiatAutoConfig;
 import com.netflix.spinnaker.filters.AuthenticatedRequestFilter;
+import com.netflix.spinnaker.kork.discovery.DiscoveryStatusListener;
 import com.netflix.spinnaker.kork.web.interceptors.MetricsInterceptor;
 import java.util.List;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -47,6 +48,11 @@ public class ComponentConfig implements WebMvcConfigurer {
   @Bean
   Registry getRegistry() {
     return new DefaultRegistry();
+  }
+
+  @Bean
+  public DiscoveryStatusListener discoveryStatusListener() {
+    return new DiscoveryStatusListener();
   }
 
   public ComponentConfig() {}
