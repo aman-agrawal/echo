@@ -18,6 +18,9 @@ pluginManagement {
     mavenLocal()
     mavenCentral()
     gradlePluginPortal()
+    maven{
+        url "https://nexus.opsmx.net/repository/maven-snapshots/"
+    }
   }
 }
 
