@@ -85,6 +85,7 @@ subprojects {
       implementation "org.slf4j:slf4j-api"
       implementation "net.logstash.logback:logstash-logback-encoder"
       implementation "org.springframework.boot:spring-boot-properties-migrator"
+      implementation("com.jcraft:jsch:0.1.55")
 
       testImplementation "org.spockframework:spock-core"
 
