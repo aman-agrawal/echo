@@ -30,13 +30,14 @@ RUN update-crypto-policies --set FIPS
 
 COPY echo-web/build/install/echo /opt/echo
 #RUN yum -y install java-17-openjdk-devel wget vim curl net-tools nettle
+RUN yum -y install  wget 
 #RUN yum -y update
 RUN adduser spinnaker
 RUN mkdir -p /opt/echo/plugins
 RUN chmod -R 777 /opt/echo/plugins/
 RUN chown -R spinnaker:spinnaker /opt/
 
-RUN yum -y remove  tar wget vim
+RUN yum -y remove  tar  vim
 RUN yum -y remove clean all && rm -rf /var/cache
 
 USER spinnaker
