@@ -17,11 +17,9 @@
 package com.netflix.spinnaker.echo.config;
 
 import com.google.common.collect.ImmutableList;
-import com.netflix.spectator.api.DefaultRegistry;
 import com.netflix.spectator.api.Registry;
 import com.netflix.spinnaker.fiat.shared.EnableFiatAutoConfig;
 import com.netflix.spinnaker.filters.AuthenticatedRequestFilter;
-import com.netflix.spinnaker.kork.discovery.DiscoveryStatusListener;
 import com.netflix.spinnaker.kork.web.interceptors.MetricsInterceptor;
 import java.util.List;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -45,24 +43,18 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
     basePackages = {"com.netflix.spinnaker.echo"},
     excludeFilters = @Filter(value = Configuration.class, type = FilterType.ANNOTATION))
 public class ComponentConfig implements WebMvcConfigurer {
-  @Bean
-  Registry getRegistry() {
-    return new DefaultRegistry();
-  }
+  private Registry registry;
 
-  @Bean
-  public DiscoveryStatusListener discoveryStatusListener() {
-    return new DiscoveryStatusListener();
+  public ComponentConfig(Registry registry) {
+    this.registry = registry;
   }
-
-  public ComponentConfig() {}
 
   @Override
   public void addInterceptors(InterceptorRegistry registry) {
     List<String> pathVarsToTag = ImmutableList.of("type", "source");
     List<String> exclude = ImmutableList.of("BasicErrorController");
     MetricsInterceptor interceptor =
-        new MetricsInterceptor(getRegistry(), "controller.invocations", pathVarsToTag, exclude);
+        new MetricsInterceptor(this.registry, "controller.invocations", pathVarsToTag, exclude);
     registry.addInterceptor(interceptor);
   }
 
