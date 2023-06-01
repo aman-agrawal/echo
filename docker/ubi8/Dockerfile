@@ -1,4 +1,4 @@
-FROM quay.io/opsmxpublic/ubifips:8.8
+FROM quay.io/opsmxpublic/ubifips:8.7
 MAINTAINER sig-platform@spinnaker.io
 COPY echo-web/build/install/echo /opt/echo
 RUN yum -y install java-17-openjdk-devel wget vim curl net-tools nettle
