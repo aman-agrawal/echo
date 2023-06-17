@@ -30,7 +30,8 @@ import org.springframework.stereotype.Service
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils
 import org.springframework.web.util.UriUtils
 
-
+import static groovy.json.JsonOutput.prettyPrint
+import static groovy.json.JsonOutput.toJson
 import static net.logstash.logback.argument.StructuredArguments.*
 
 @Slf4j
