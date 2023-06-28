@@ -64,7 +64,7 @@ resilience4j.circuitbreaker:
 spring:
   config:
     activate:
-      on-profile: local
+      on-profile: scheduler
 
 scheduler:
   enabled: true
@@ -76,7 +76,7 @@ scheduler:
 spring:
   config:
     activate:
-      on-profile: local
+      on-profile: worker
 
 scheduler:
   enabled: false
