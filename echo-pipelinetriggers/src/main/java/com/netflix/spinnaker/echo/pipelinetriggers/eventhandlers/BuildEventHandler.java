@@ -82,9 +82,23 @@ public class BuildEventHandler extends BaseTriggerEventHandler<BuildEvent> {
   @Override
   public boolean isSuccessfulTriggerEvent(BuildEvent buildEvent) {
     BuildEvent.Build lastBuild = buildEvent.getContent().getProject().getLastBuild();
-    return lastBuild != null
-        && !lastBuild.isBuilding()
-        && lastBuild.getResult() == BuildEvent.Result.SUCCESS;
+    boolean isSuccessfulTriggerEvent =
+        (lastBuild != null
+            && !lastBuild.isBuilding()
+            && lastBuild.getResult() == BuildEvent.Result.SUCCESS);
+    log.debug("SuccessfulTriggerEvent :{}", isSuccessfulTriggerEvent);
+    return isSuccessfulTriggerEvent;
+  }
+
+  @Override
+  public boolean isUnstableTriggerEvent(BuildEvent buildEvent) {
+    BuildEvent.Build lastBuild = buildEvent.getContent().getProject().getLastBuild();
+    boolean isUnstableTriggerEvent =
+        (lastBuild != null
+            && !lastBuild.isBuilding()
+            && lastBuild.getResult() == BuildEvent.Result.UNSTABLE);
+    log.debug("UnstableTriggerEvent :{}", isUnstableTriggerEvent);
+    return isUnstableTriggerEvent;
   }
 
   @Override

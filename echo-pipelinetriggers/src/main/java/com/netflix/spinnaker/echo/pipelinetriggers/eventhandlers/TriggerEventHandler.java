@@ -73,4 +73,8 @@ public interface TriggerEventHandler<T extends TriggerEvent> {
   default boolean isSuccessfulTriggerEvent(T event) {
     return true;
   }
+
+  default boolean isUnstableTriggerEvent(T event) {
+    return true;
+  }
 }
