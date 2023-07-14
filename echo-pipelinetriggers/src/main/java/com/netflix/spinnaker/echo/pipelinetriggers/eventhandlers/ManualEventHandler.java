@@ -54,7 +54,7 @@ public class ManualEventHandler implements TriggerEventHandler<ManualEvent> {
   private static final Logger log = LoggerFactory.getLogger(ManualEventHandler.class);
   private static final List<String> supportedTriggerTypes =
       Collections.singletonList(MANUAL_TRIGGER_TYPE);
-
+  private static final String JENKINS_TRIGGER_TYPE = "jenkins";
   private final ObjectMapper objectMapper;
   private final Optional<BuildInfoService> buildInfoService;
   private final Optional<ArtifactInfoService> artifactInfoService;
@@ -105,15 +105,38 @@ public class ManualEventHandler implements TriggerEventHandler<ManualEvent> {
   @Override
   public List<Pipeline> getMatchingPipelines(ManualEvent event, PipelineCache pipelineCache)
       throws TimeoutException {
-    if (!isSuccessfulTriggerEvent(event)) {
+    log.debug("Start of the get matching Pipelines - ManualTriggerEventHandler");
+    boolean unstableTriggerEvent = isUnstableTriggerEvent(event);
+    boolean successfulTriggerEvent = isSuccessfulTriggerEvent(event);
+    if (!unstableTriggerEvent || !successfulTriggerEvent) {
       return Collections.emptyList();
     }
+    List<Pipeline> pipelines = new ArrayList<>();
+    if (successfulTriggerEvent) {
+      pipelines =
+          pipelineCache.getPipelinesSync().stream()
+              .map(p -> withMatchingTrigger(event, p))
+              .filter(Optional::isPresent)
+              .map(Optional::get)
+              .collect(Collectors.toList());
+    }
+    if (unstableTriggerEvent && isJenkinsBuildTriggerAndUnstableBuild(event)) {
+      pipelines =
+          pipelineCache.getPipelinesSync().stream()
+              .map(p -> withMatchingTrigger(event, p))
+              .filter(Optional::isPresent)
+              .map(Optional::get)
+              .collect(Collectors.toList());
+    }
+    log.debug("End of the get matching Pipelines - ManualTriggerEventHandler");
+    return pipelines;
+  }
 
-    return pipelineCache.getPipelinesSync().stream()
-        .map(p -> withMatchingTrigger(event, p))
-        .filter(Optional::isPresent)
-        .map(Optional::get)
-        .collect(Collectors.toList());
+  private boolean isJenkinsBuildTriggerAndUnstableBuild(ManualEvent event) {
+    Trigger trigger = event.getContent().getTrigger();
+    return trigger != null
+        && trigger.getType().equalsIgnoreCase(JENKINS_TRIGGER_TYPE)
+        && trigger.isUnstableBuild();
   }
 
   private boolean pipelineMatches(String application, String nameOrId, Pipeline pipeline) {

@@ -72,6 +72,7 @@ public class TriggerMonitor<T extends TriggerEvent> implements EventListener {
   }
 
   private void triggerMatchingPipelines(T event) {
+    log.debug("Start of the trigger matching Pipelines - TriggerMonitor");
     try {
       List<Pipeline> matchingPipelines = eventHandler.getMatchingPipelines(event, pipelineCache);
       matchingPipelines.stream()
@@ -89,6 +90,7 @@ public class TriggerMonitor<T extends TriggerEvent> implements EventListener {
     } catch (TimeoutException e) {
       log.error("Failed to get pipeline configs", e);
     }
+    log.debug("End of the trigger matching Pipelines - TriggerMonitor");
   }
 
   private void recordMetrics() {

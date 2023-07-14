@@ -48,6 +48,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public abstract class BaseTriggerEventHandler<T extends TriggerEvent>
     implements TriggerEventHandler<T> {
+
+  private static final String JENKINS_TRIGGER_TYPE = "jenkins";
   private final Registry registry;
   private final FiatPermissionEvaluator fiatPermissionEvaluator;
   protected final ObjectMapper objectMapper;
@@ -64,25 +66,54 @@ public abstract class BaseTriggerEventHandler<T extends TriggerEvent>
   @Override
   public List<Pipeline> getMatchingPipelines(T event, PipelineCache pipelineCache)
       throws TimeoutException {
-    if (!isSuccessfulTriggerEvent(event)) {
+    log.debug("Start of the get matching Pipelines - BaseTriggerEventHandler");
+    boolean unstableTriggerEvent = isUnstableTriggerEvent(event);
+    boolean successfulTriggerEvent = isSuccessfulTriggerEvent(event);
+    if (!unstableTriggerEvent || !successfulTriggerEvent) {
       return Collections.emptyList();
     }
 
     Map<String, List<Trigger>> triggers = pipelineCache.getEnabledTriggersSync();
-    return supportedTriggerTypes().stream()
-        .flatMap(
-            triggerType ->
-                Optional.ofNullable(triggers.get(triggerType))
-                    .orElse(Collections.emptyList())
-                    .stream())
-        .filter(this::isValidTrigger)
-        .filter(matchTriggerFor(event))
-        .filter(this::canAccessApplication)
-        .map(trigger -> withMatchingTrigger(event, trigger))
-        .filter(Optional::isPresent)
-        .map(Optional::get)
-        .distinct()
-        .collect(Collectors.toList());
+
+    List<Pipeline> pipelines = new ArrayList<>();
+    if (successfulTriggerEvent) {
+      pipelines =
+          supportedTriggerTypes().stream()
+              .flatMap(
+                  triggerType ->
+                      Optional.ofNullable(triggers.get(triggerType))
+                          .orElse(Collections.emptyList())
+                          .stream())
+              .filter(this::isValidTrigger)
+              .filter(matchTriggerFor(event))
+              .filter(this::canAccessApplication)
+              .map(trigger -> withMatchingTrigger(event, trigger))
+              .filter(Optional::isPresent)
+              .map(Optional::get)
+              .distinct()
+              .collect(Collectors.toList());
+    }
+
+    if (unstableTriggerEvent) {
+      pipelines =
+          (Optional.ofNullable(triggers.get(JENKINS_TRIGGER_TYPE))
+                  .orElse(Collections.emptyList())
+                  .stream())
+              .filter(this::isValidTrigger)
+              .filter(this::matchTriggerForUnstableBuild)
+              .filter(this::canAccessApplication)
+              .map(trigger -> withMatchingTrigger(event, trigger))
+              .filter(Optional::isPresent)
+              .map(Optional::get)
+              .distinct()
+              .collect(Collectors.toList());
+    }
+    log.debug("End of the get matching Pipelines - BaseTriggerEventHandler");
+    return pipelines;
+  }
+
+  private boolean matchTriggerForUnstableBuild(Trigger trigger) {
+    return trigger.isUnstableBuild();
   }
 
   private Optional<Pipeline> withMatchingTrigger(T event, Trigger trigger) {

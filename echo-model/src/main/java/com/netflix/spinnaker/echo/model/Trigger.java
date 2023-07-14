@@ -55,6 +55,7 @@ import org.slf4j.LoggerFactory;
       "parameters",
       "payloadConstraints",
       "attributeConstraints",
+      "unstableBuild",
       "branch",
       "runAsUser",
       "subscriptionName",
@@ -104,7 +105,7 @@ public class Trigger {
   String id;
   String type;
   boolean enabled;
-
+  boolean unstableBuild;
   String parentPipelineId;
   String parentPipelineApplication;
 
