@@ -54,3 +54,6 @@ dependencies {
   testImplementation "org.springframework:spring-test"
   annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 }
+test {
+  useJUnitPlatform()
+}

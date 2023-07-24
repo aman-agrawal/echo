@@ -28,7 +28,7 @@ public class GoogleChatMessage {
 
   public Card cards;
 
-  transient String message;
+  public transient String message;
 
   public GoogleChatMessage(String message) {
     this.message = message;

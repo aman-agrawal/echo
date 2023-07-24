@@ -29,3 +29,6 @@ dependencies {
   implementation "io.spinnaker.kork:kork-artifacts"
   testImplementation "io.spinnaker.kork:kork-jedis-test"
 }
+test {
+  useJUnitPlatform()
+}

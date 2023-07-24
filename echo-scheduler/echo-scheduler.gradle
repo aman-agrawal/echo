@@ -45,3 +45,6 @@ dependencies {
     exclude group: 'com.zaxxer', module: 'HikariCP-java7'
   }
 }
+test {
+  useJUnitPlatform()
+}

@@ -43,12 +43,15 @@ dependencies {
 
   implementation 'com.vdurmont:semver4j'
   implementation "com.jayway.jsonpath:json-path"
+  implementation "org.apache.groovy:groovy-json"
 
   testImplementation project(':echo-test')
   testImplementation "org.springframework.boot:spring-boot-starter-test"
   testImplementation "org.junit.jupiter:junit-jupiter-api"
   testImplementation "org.assertj:assertj-core"
-  testImplementation "org.codehaus.groovy:groovy-json"
 
   testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine"
+}
+test {
+  useJUnitPlatform()
 }

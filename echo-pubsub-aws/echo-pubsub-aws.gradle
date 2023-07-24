@@ -30,3 +30,6 @@ dependencies {
   implementation "org.springframework.boot:spring-boot-starter-validation"
   api("com.jcraft:jsch.agentproxy.connector-factory:0.0.9")
 }
+test {
+  useJUnitPlatform()
+}

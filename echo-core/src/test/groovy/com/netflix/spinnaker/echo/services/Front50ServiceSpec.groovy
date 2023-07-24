@@ -12,6 +12,7 @@ import retrofit.client.Client
 import retrofit.client.Header
 import retrofit.client.Response
 import retrofit.mime.TypedString
+import groovy.json.JsonOutput
 
 class Front50ServiceSpec extends Specification {
   def endpoint = "http://front50-prestaging.prod.netflix.net"
