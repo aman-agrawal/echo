@@ -22,6 +22,7 @@ dependencies {
   implementation project(':echo-model')
   implementation project(':echo-pubsub-core')
   implementation project(':echo-notifications')
+  implementation "com.google.guava:guava:32.1.1-jre"
   implementation "com.squareup.retrofit:retrofit"
   implementation 'com.google.cloud:google-cloud-pubsub:1.101.0'
   implementation "io.spinnaker.kork:kork-artifacts"
