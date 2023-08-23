@@ -69,7 +69,7 @@ public abstract class BaseTriggerEventHandler<T extends TriggerEvent>
     log.debug("Start of the get matching Pipelines - BaseTriggerEventHandler");
     boolean unstableTriggerEvent = isUnstableTriggerEvent(event);
     boolean successfulTriggerEvent = isSuccessfulTriggerEvent(event);
-    if (!unstableTriggerEvent || !successfulTriggerEvent) {
+    if (!unstableTriggerEvent && !successfulTriggerEvent) {
       return Collections.emptyList();
     }
 

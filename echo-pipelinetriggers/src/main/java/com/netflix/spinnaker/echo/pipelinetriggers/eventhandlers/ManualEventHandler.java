@@ -108,7 +108,7 @@ public class ManualEventHandler implements TriggerEventHandler<ManualEvent> {
     log.debug("Start of the get matching Pipelines - ManualTriggerEventHandler");
     boolean unstableTriggerEvent = isUnstableTriggerEvent(event);
     boolean successfulTriggerEvent = isSuccessfulTriggerEvent(event);
-    if (!unstableTriggerEvent || !successfulTriggerEvent) {
+    if (!unstableTriggerEvent && !successfulTriggerEvent) {
       return Collections.emptyList();
     }
     List<Pipeline> pipelines = new ArrayList<>();
