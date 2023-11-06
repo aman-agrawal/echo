@@ -53,9 +53,9 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           build-args: |
-            CUSTOMPLUGIN_RELEASEORG=${{ inputs.org }}
-            CUSTOMPLUGIN_RELEASEREPO=${{ inputs.repo }}
-            CUSTOMPLUGIN_RELEASEVERSION=${{ inputs.tag }}
+            CUSTOMPLUGIN_RELEASEORG="opsmx"
+            CUSTOMPLUGIN_RELEASEREPO="armory-observability-plugin"
+            CUSTOMPLUGIN_RELEASEVERSION="v1.0.1"
           context: .
           file: docker/ubi8/Dockerfile-fips
           push: true
