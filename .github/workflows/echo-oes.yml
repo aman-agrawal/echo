@@ -2,6 +2,38 @@ name: Branch Build echo
  
 on:
   workflow_call:
+  workflow_dispatch:
+    # Inputs the workflow accepts.
+    inputs:
+      org:
+        # Friendly description to be shown in the UI instead of 'name'
+        description: 'Oragnisation'
+        # Default value if no value is explicitly provided
+        default: 'OpsMx'
+        # Input has to be provided for the workflow to run
+        required: true
+        # The data type of the input
+        type: string
+
+      repo:
+        # Friendly description to be shown in the UI instead of 'name'
+        description: 'Repositry'
+        # Default value if no value is explicitly provided
+        default: 'armory-observability-plugin'
+        # Input has to be provided for the workflow to run
+        required: true
+        # The data type of the input
+        type: string
+
+      tag:
+        # Friendly description to be shown in the UI instead of 'name'
+        description: 'Tag'
+        # Default value if no value is explicitly provided
+        default: 'v1.0.1'
+        # Input has to be provided for the workflow to run
+        required: true
+        # The data type of the input
+        type: string
   push:
     branches:
     - OES-1.30.1
@@ -52,6 +84,10 @@ jobs:
       - name: dockerBuildpush
         uses: docker/build-push-action@v2
         with:
+          build-args: |
+            CUSTOMPLUGIN_RELEASEORG=${{ inputs.org }}
+            CUSTOMPLUGIN_RELEASEREPO=${{ inputs.repo }}
+            CUSTOMPLUGIN_RELEASEVERSION=${{ inputs.tag }}
           context: .
           file: docker/ubi8/Dockerfile-fips
           push: true
@@ -60,6 +96,10 @@ jobs:
       - name: dockerBuildpushdev
         uses: docker/build-push-action@v2
         with:
+          build-args: |
+            CUSTOMPLUGIN_RELEASEORG=${{ inputs.org }}
+            CUSTOMPLUGIN_RELEASEREPO=${{ inputs.repo }}
+            CUSTOMPLUGIN_RELEASEVERSION=${{ inputs.tag }}
           context: .
           file: docker/ubi8/Dockerfile-dev
           push: true
