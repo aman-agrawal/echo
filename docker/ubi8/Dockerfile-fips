@@ -37,6 +37,12 @@ RUN mkdir -p /opt/echo/plugins
 
 #custom plugin zip files adding
 
+ARG CUSTOMPLUGIN_RELEASEVERSION_PLUGIN
+ENV CUSTOMPLUGIN_RELEASEVERSION_PLUGIN=$CUSTOMPLUGIN_RELEASEVERSION_PLUGIN
+RUN wget -O Opsmx.EchoEventPlugin-EchoEventPlugin-v1.0.1-SNAPSHOT.zip -c https://github.com/OpsMx/Customplugins/releases/download/${CUSTOMPLUGIN_RELEASEVERSION_PLUGIN}/EchoEventPlugin-v1.0.1-SNAPSHOT.zip -P /opt/echo/plugins
+RUN mv Opsmx.EchoEventPlugin-EchoEventPlugin-v1.0.1-SNAPSHOT.zip /opt/echo/plugins/
+
+
 #custom plugin zip files adding
 ARG CUSTOMPLUGIN_RELEASEORG
 ENV CUSTOMPLUGIN_RELEASEORG=$CUSTOMPLUGIN_RELEASEORG
