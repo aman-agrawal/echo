@@ -39,6 +39,8 @@ dependencies {
     implementation "org.springframework.boot:spring-boot-starter-actuator"
     implementation "io.spinnaker.kork:kork-artifacts"
     implementation "io.spinnaker.kork:kork-cloud-config-server"
+    implementation "software.amazon.awssdk:s3:2.22.12"
+    implementation "software.amazon.awssdk:secretsmanager:2.22.12"
     implementation "io.spinnaker.kork:kork-core"
     implementation "io.spinnaker.kork:kork-config"
     implementation "io.spinnaker.kork:kork-web"
