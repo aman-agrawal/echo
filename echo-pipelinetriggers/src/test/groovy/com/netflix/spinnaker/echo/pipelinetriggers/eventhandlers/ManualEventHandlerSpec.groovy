@@ -17,7 +17,6 @@
  */
 package com.netflix.spinnaker.echo.pipelinetriggers.eventhandlers
 
-import com.fasterxml.jackson.databind.ObjectMapper
 import com.netflix.spinnaker.echo.artifacts.ArtifactInfoService
 import com.netflix.spinnaker.echo.build.BuildInfoService
 import com.netflix.spinnaker.echo.jackson.EchoObjectMapper
