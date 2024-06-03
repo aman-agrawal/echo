@@ -58,7 +58,7 @@ dependencies {
     }
 
     runtimeOnly "io.spinnaker.kork:kork-runtime"
-    implementation("mysql:mysql-connector-java")
+    implementation("com.mysql:mysql-connector-j")
     testImplementation "org.springframework.boot:spring-boot-starter-test"
     testImplementation "org.spockframework:spock-spring"
     testImplementation "org.junit.jupiter:junit-jupiter-api"
