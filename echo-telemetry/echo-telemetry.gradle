@@ -29,10 +29,11 @@ dependencies {
   implementation 'com.squareup.retrofit:converter-jackson'
   implementation 'de.huxhorn.sulky:de.huxhorn.sulky.ulid'
   implementation "org.apache.commons:commons-lang3"
-  implementation "net.logstash.logback:logstash-logback-encoder:4.11"
-  implementation "com.squareup.retrofit:converter-jackson:1.9.0"
+  implementation "net.logstash.logback:logstash-logback-encoder"
+  implementation "com.squareup.retrofit:converter-jackson"
+  // TODO(de.huxhorn.sulky.ulid): remove pinned version after upgrading it in kork
   implementation "de.huxhorn.sulky:de.huxhorn.sulky.ulid:8.3.0"
-  testImplementation "io.mockk:mockk:1.10.5"
+  testImplementation "io.mockk:mockk"
   testImplementation 'io.strikt:strikt-core'
   testImplementation "io.spinnaker.kork:kork-jedis-test"
   testImplementation "org.junit.jupiter:junit-jupiter-api"

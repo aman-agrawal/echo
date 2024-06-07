@@ -3,9 +3,9 @@ apply from: "${project.rootDir}/gradle/kotlin.gradle"
 dependencies {
   implementation(project(":echo-web"))
   api("org.springframework.boot:spring-boot-starter-test")
-  api("dev.minutest:minutest:1.13.0")
-  api("com.netflix.spectator:spectator-api:1.5.4")
-  implementation "net.logstash.logback:logstash-logback-encoder:4.11"
+  api("dev.minutest:minutest")
+  api("com.netflix.spectator:spectator-api")
+  implementation "net.logstash.logback:logstash-logback-encoder"
 
   testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
 }

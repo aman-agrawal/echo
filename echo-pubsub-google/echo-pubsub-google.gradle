@@ -15,7 +15,7 @@
  */
 
 dependencies {
-  api "com.netflix.spectator:spectator-api:1.5.4"
+  api "com.netflix.spectator:spectator-api"
   api("org.springframework.boot:spring-boot-starter-validation")
   implementation project(':echo-artifacts')
   implementation project(':echo-core')
@@ -31,5 +31,5 @@ dependencies {
   implementation 'org.apache.commons:commons-lang3'
   implementation 'org.springframework.boot:spring-boot-autoconfigure'
   implementation "jakarta.validation:jakarta.validation-api:3.0.2"
-  implementation "net.logstash.logback:logstash-logback-encoder:4.11"
+  implementation "net.logstash.logback:logstash-logback-encoder"
 }

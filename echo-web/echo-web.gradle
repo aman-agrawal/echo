@@ -39,16 +39,19 @@ dependencies {
     implementation "org.springframework.boot:spring-boot-starter-actuator"
     implementation "io.spinnaker.kork:kork-artifacts"
     implementation "io.spinnaker.kork:kork-cloud-config-server"
+
+    // TODO(software.amazon.awssdk): remove pinned version after upgrading it in kork
     implementation "software.amazon.awssdk:s3:2.22.12"
     implementation "software.amazon.awssdk:secretsmanager:2.22.12"
+
     implementation "io.spinnaker.kork:kork-core"
     implementation "io.spinnaker.kork:kork-config"
     implementation "io.spinnaker.kork:kork-web"
     implementation "com.squareup.retrofit:retrofit"
     implementation "com.squareup.retrofit:converter-jackson"
-    implementation "com.jakewharton.retrofit:retrofit1-okhttp3-client:1.1.0"
+    implementation "com.jakewharton.retrofit:retrofit1-okhttp3-client"
     implementation "com.fasterxml.jackson.core:jackson-databind"
-    implementation "com.netflix.spectator:spectator-api:1.5.3"
+    implementation "com.netflix.spectator:spectator-api"
     implementation "jakarta.validation:jakarta.validation-api:3.0.2"
     implementation 'net.redhogs.cronparser:cron-parser-core:2.8'
     implementation "org.springframework.data:spring-data-rest-webmvc"

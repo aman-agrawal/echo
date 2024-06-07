@@ -16,21 +16,18 @@
 
 dependencies {
 
-  api("net.logstash.logback:logstash-logback-encoder:4.11")
-  api("com.squareup.retrofit:retrofit:1.9.0")
-  api("com.squareup.retrofit:converter-jackson:1.9.0")
-  api("com.squareup.okhttp:okhttp:2.7.5")
-  api("com.squareup.okhttp:okhttp-urlconnection:2.7.5")
-  api("com.squareup.okhttp:okhttp-apache:2.7.5")
+  api("net.logstash.logback:logstash-logback-encoder")
+  api("com.squareup.retrofit:retrofit")
+  api("com.squareup.retrofit:converter-jackson")
+  api("com.squareup.okhttp:okhttp")
+  api("com.squareup.okhttp:okhttp-urlconnection")
+  api("com.squareup.okhttp:okhttp-apache")
   implementation project(':echo-core')
   implementation project(':echo-model')
   implementation project(':echo-pipelinetriggers')
 
-  implementation "com.squareup.retrofit:retrofit:1.9.0"
-  implementation "com.squareup.retrofit:converter-jackson:1.9.0"
-  implementation "com.squareup.okhttp:okhttp:2.7.5"
-  implementation "com.squareup.okhttp:okhttp-urlconnection:2.7.5"
-  implementation "com.squareup.okhttp:okhttp-apache:2.7.5"
+  implementation "com.squareup.retrofit:retrofit"
+  implementation "com.squareup.retrofit:converter-jackson"
 
   implementation "com.netflix.spectator:spectator-api"
   implementation "io.spinnaker.kork:kork-artifacts"

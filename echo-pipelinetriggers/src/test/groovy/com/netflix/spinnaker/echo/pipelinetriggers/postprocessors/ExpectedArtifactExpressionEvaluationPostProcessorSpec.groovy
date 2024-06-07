@@ -1,6 +1,5 @@
 package com.netflix.spinnaker.echo.pipelinetriggers.postprocessors
 
-import com.fasterxml.jackson.databind.ObjectMapper
 import com.netflix.spinnaker.echo.jackson.EchoObjectMapper
 import com.netflix.spinnaker.echo.model.Trigger
 import com.netflix.spinnaker.echo.test.RetrofitStubs
