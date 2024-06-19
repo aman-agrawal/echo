@@ -39,8 +39,8 @@ RUN mkdir -p /opt/echo/plugins
 
 ARG CUSTOMPLUGIN_RELEASEVERSION_PLUGIN
 ENV CUSTOMPLUGIN_RELEASEVERSION_PLUGIN=$CUSTOMPLUGIN_RELEASEVERSION_PLUGIN
-RUN wget -O Opsmx.EchoEventPlugin-EchoEventPlugin-v1.0.1-SNAPSHOT.zip -c https://github.com/OpsMx/Customplugins/releases/download/${CUSTOMPLUGIN_RELEASEVERSION_PLUGIN}/EchoEventPlugin-v1.0.1-SNAPSHOT.zip -P /opt/echo/plugins
-RUN mv Opsmx.EchoEventPlugin-EchoEventPlugin-v1.0.1-SNAPSHOT.zip /opt/echo/plugins/
+#RUN wget -O Opsmx.EchoEventPlugin-EchoEventPlugin-v1.0.1-SNAPSHOT.zip -c https://github.com/OpsMx/Customplugins/releases/download/${CUSTOMPLUGIN_RELEASEVERSION_PLUGIN}/EchoEventPlugin-v1.0.1-SNAPSHOT.zip -P /opt/echo/plugins
+#RUN mv Opsmx.EchoEventPlugin-EchoEventPlugin-v1.0.1-SNAPSHOT.zip /opt/echo/plugins/
 
 
 #custom plugin zip files adding
@@ -53,9 +53,9 @@ ENV CUSTOMPLUGIN_RELEASEREPO=$CUSTOMPLUGIN_RELEASEREPO
 ARG CUSTOMPLUGIN_RELEASEVERSION
 ENV CUSTOMPLUGIN_RELEASEVERSION=$CUSTOMPLUGIN_RELEASEVERSION
 
-RUN wget -O Armory.armory-observability-plugin-${CUSTOMPLUGIN_RELEASEVERSION}-SNAPSHOT.zip -c https://github.com/${CUSTOMPLUGIN_RELEASEORG}/${CUSTOMPLUGIN_RELEASEREPO}/releases/download/${CUSTOMPLUGIN_RELEASEVERSION}/armory-observability-plugin-${CUSTOMPLUGIN_RELEASEVERSION}.zip -P /opt/echo/plugins 
+#RUN wget -O Armory.armory-observability-plugin-${CUSTOMPLUGIN_RELEASEVERSION}-SNAPSHOT.zip -c https://github.com/${CUSTOMPLUGIN_RELEASEORG}/${CUSTOMPLUGIN_RELEASEREPO}/releases/download/${CUSTOMPLUGIN_RELEASEVERSION}/armory-observability-plugin-${CUSTOMPLUGIN_RELEASEVERSION}.zip -P /opt/echo/plugins 
 
-RUN mv Armory.armory-observability-plugin-${CUSTOMPLUGIN_RELEASEVERSION}-SNAPSHOT.zip /opt/echo/plugins/
+#RUN mv Armory.armory-observability-plugin-${CUSTOMPLUGIN_RELEASEVERSION}-SNAPSHOT.zip /opt/echo/plugins/
 
 
 
