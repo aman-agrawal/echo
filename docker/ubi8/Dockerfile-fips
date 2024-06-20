@@ -21,6 +21,7 @@ ENV JAVA_HOME=/opsmx-java-runtime \
     PATH=${PATH}:/opsmx-java-runtime/bin \
     WORK_DIR=/opsmx/workdir \
     CONF_DIR=/opsmx/conf
+ ENV SERVICE_PLUGIN_PATH=/opt/echo/plugins
 
 # Enabling fips mode
 RUN fips-mode-setup --enable
@@ -33,7 +34,7 @@ COPY echo-web/build/install/echo /opt/echo
 RUN yum -y install  wget 
 #RUN yum -y update
 RUN adduser spinnaker
-RUN mkdir -p /opt/echo/plugins
+RUN mkdir -p ${SERVICE_PLUGIN_PATH}
 
 #custom plugin zip files adding
 
@@ -47,14 +48,14 @@ ARG CUSTOMPLUGIN_RELEASEREPO
 ENV CUSTOMPLUGIN_RELEASEREPO=$CUSTOMPLUGIN_RELEASEREPO
 
 
-RUN wget -O Opsmx.EchoEventPlugin-EchoEventPlugin-${CUSTOMPLUGIN_RELEASE_VERSION}.zip -c https://github.com/${CUSTOMPLUGIN_RELEASEORG}/Customplugins/releases/download/v${CUSTOMPLUGIN_RELEASEVERSION_PLUGIN}/EchoEventPlugin-v${CUSTOMPLUGIN_RELEASE_VERSION}-SNAPSHOT.zip -P /opt/echo/plugins/
-RUN mv Opsmx.EchoEventPlugin-EchoEventPlugin-${CUSTOMPLUGIN_RELEASE_VERSION}.zip /opt/echo/plugins/
+RUN wget -O Opsmx.EchoEventPlugin-EchoEventPlugin-${CUSTOMPLUGIN_RELEASE_VERSION}.zip -c https://github.com/${CUSTOMPLUGIN_RELEASEORG}/Customplugins/releases/download/v${CUSTOMPLUGIN_RELEASEVERSION_PLUGIN}/EchoEventPlugin-v${CUSTOMPLUGIN_RELEASE_VERSION}-SNAPSHOT.zip -P ${SERVICE_PLUGIN_PATH}
+RUN mv Opsmx.EchoEventPlugin-EchoEventPlugin-${CUSTOMPLUGIN_RELEASE_VERSION}.zip ${SERVICE_PLUGIN_PATH}
 
 
-RUN wget -O Armory.armory-observability-plugin-${CUSTOMPLUGIN_RELEASE_VERSION}.zip -c https://github.com/${CUSTOMPLUGIN_RELEASEORG}/${CUSTOMPLUGIN_RELEASEREPO}/releases/download/v${CUSTOMPLUGIN_RELEASE_VERSION}/armory-observability-plugin-v${CUSTOMPLUGIN_RELEASE_VERSION}.zip -P /opt/echo/plugins/
-RUN mv Armory.armory-observability-plugin-${CUSTOMPLUGIN_RELEASE_VERSION}.zip /opt/echo/plugins/
+RUN wget -O Armory.armory-observability-plugin-${CUSTOMPLUGIN_RELEASE_VERSION}.zip -c https://github.com/${CUSTOMPLUGIN_RELEASEORG}/${CUSTOMPLUGIN_RELEASEREPO}/releases/download/v${CUSTOMPLUGIN_RELEASE_VERSION}/armory-observability-plugin-v${CUSTOMPLUGIN_RELEASE_VERSION}.zip -P ${SERVICE_PLUGIN_PATH}
+RUN mv Armory.armory-observability-plugin-${CUSTOMPLUGIN_RELEASE_VERSION}.zip ${SERVICE_PLUGIN_PATH}
 
-RUN chmod -R 777 /opt/echo/plugins/
+RUN chmod -R 777 ${SERVICE_PLUGIN_PATH}
 RUN chown -R spinnaker:spinnaker /opt/
 
 RUN yum -y remove  tar  vim vi
