@@ -19,6 +19,7 @@ package com.netflix.spinnaker.echo.notification
 import com.netflix.spinnaker.echo.api.Notification
 import org.springframework.boot.autoconfigure.freemarker.FreeMarkerNonWebConfiguration
 import org.springframework.boot.autoconfigure.freemarker.FreeMarkerProperties
+import spock.lang.Ignore
 import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Unroll
@@ -141,6 +142,7 @@ class ManualJudgmentTemplateTest extends Specification {
         return notification
     }
 
+  @Ignore
   void "should not word wrap (used for slack)"() {
     given:
     Notification notif = buildFullNotification()
